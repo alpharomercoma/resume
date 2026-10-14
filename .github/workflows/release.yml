@@ -1,0 +1,85 @@
+name: Render and release
+
+# Every change to the CV on master becomes a dated release. alpharomer.com/resume
+# serves the assets of the latest release, so publishing is just a push.
+on:
+  push:
+    branches: [master]
+    paths:
+      - Alpha_Romer_Coma_CV.yaml
+      - pyproject.toml
+      - uv.lock
+      - scripts/render.sh
+      - .github/workflows/release.yml
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Render (fails if the CV is longer than one page)
+        run: ./scripts/render.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: resume-${{ github.sha }}
+          path: rendercv_output/
+
+      - name: Publish release
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          base="v$(date -u +%Y.%m.%d)"
+          tag="$base"
+          n=1
+          while git rev-parse -q --verify "refs/tags/$tag" >/dev/null; do
+            n=$((n + 1))
+            tag="$base.$n"
+          done
+
+          prev=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -n "$prev" ]; then
+            notes=$(git log --pretty='- %s (%h)' "$prev..HEAD" -- Alpha_Romer_Coma_CV.yaml)
+          else
+            notes="- Initial RenderCV release."
+          fi
+          [ -n "$notes" ] || notes="- Rebuild with no content changes."
+
+          cp Alpha_Romer_Coma_CV.yaml rendercv_output/
+          cat > rendercv_output/version.json <<EOF
+          {
+            "version": "$tag",
+            "publishedAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "commit": "$GITHUB_SHA"
+          }
+          EOF
+
+          gh release create "$tag" \
+            --target "$GITHUB_SHA" \
+            --title "Resume $tag" \
+            --notes "$notes" \
+            --latest \
+            rendercv_output/Alpha_Romer_Coma_CV.pdf \
+            rendercv_output/Alpha_Romer_Coma_CV.png \
+            rendercv_output/Alpha_Romer_Coma_CV.md \
+            rendercv_output/Alpha_Romer_Coma_CV.html \
+            rendercv_output/Alpha_Romer_Coma_CV.yaml \
+            rendercv_output/version.json
