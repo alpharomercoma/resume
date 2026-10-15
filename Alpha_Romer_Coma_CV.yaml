@@ -64,10 +64,14 @@ cv:
     # Titles are written as "**[Title](link)**, **Organization**" so an entry can
     # omit the organization (see TESDA).
     Speaking & Recognition:
+      - name: "**[PyTorch Day Japan 2026 Speaker](https://events.linuxfoundation.org/pytorch-day-japan/program/schedule/?id=1325509)**, **Linux Foundation**"
+        date: 2026-12
+        highlights:
+          - 'Selected to present **“When the KV Cache Cannot Roll Back: Prefix Reuse on Android”** with Arjhine Ty in Tokyo.'
       - name: "**[GitHub Universe 2026 Speaker](https://githubuniverse.com/)**, **GitHub**"
         date: 2026-10
         highlights:
-          - Selected to benchmark three local coding models against Copilot on TTFT, tool accuracy, and task completion.
+          - Selected to benchmark three local coding models against Copilot on TTFT, tool accuracy, and task completion in San Francisco.
       - name: "**[PyTorch Conference Europe 2026 Speaker](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no)**, **Linux Foundation**"
         date: 2026-04
         highlights:
