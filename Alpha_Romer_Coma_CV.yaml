@@ -16,93 +16,93 @@ cv:
   sections:
     # Rendered centered under the contact line, with no heading.
     Summary:
-      - ML engineer specializing in accelerated computing, edge AI, and data pipelines processing 500K+ records daily.
+      - ML engineer in PyTorch spanning LLM pre-training and post-training, on-device inference, and GPU and AI accelerator benchmarking.
 
     Technical Skills:
-      - label: Training & Inference
-        details: llama.cpp, MNN, ExecuTorch, ONNX, LiteRT, vLLM
-      - label: Machine Learning
-        details: Python, PyTorch, CatBoost, scikit-learn, RAG, Fine-Tuning
-      - label: Software Engineering
-        details: React, TypeScript, Next.js, Node.js, Express, PostgreSQL, Docker, Kubernetes
-
-    Projects & Research:
-      - name: "**[OpenWeights: Edge Inference](https://github.com/alpharomercoma/openweights)**"
-        date: 2026-08
-        highlights:
-          - Shipped an open-source llama.cpp Android app for fully on-device language and multimodal inference.
-          - Built Hugging Face discovery and GGUF inspection for memory-fit estimates, tokens/s, TTFT, and context.
-      - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
-        date: 2025-12
-        highlights:
-          - Built a tri-modal EVA-CLIP/Whisper/Qwen3-4B VLM achieving 96.67% accuracy and 97.19% F1.
-          - Published the model, code, and a **2,000-video multimodal dataset** spanning TikTok and YouTube Shorts.
+      - label: Training & Post-Training
+        details: PyTorch, Hugging Face Transformers, PEFT/LoRA, TRL, SFT, DPO, GRPO/RLVR, torch.compile, scikit-learn
+      - label: Inference & Optimization
+        details: ExecuTorch, llama.cpp, vLLM, ONNX Runtime, LiteRT, MLX, GGUF/GPTQ quantization, speculative decoding
+      - label: Accelerators
+        details: NVIDIA H100/H200 (CUDA), AMD MI300X (ROCm), AWS Trainium/Inferentia, Google TPU, Qualcomm/MediaTek NPUs
+      - label: Software & Cloud
+        details: Python, Kotlin, TypeScript, SQL, Docker, Kubernetes, Terraform, GitHub Actions, AWS, Google Cloud, pgvector
 
     Professional Experience:
+      - company: "[Experimental Machines](https://experimentalmachines.org/)"
+        position: Co-Founder
+        start_date: 2026-08
+        end_date: present
+        highlights:
+          - Shipped **OpenWeights**, an on-device LLM app on Google Play whose ExecuTorch builds decode **2.3× faster** than GGUF.
+          - Published **16 ExecuTorch LLM exports** to Hugging Face for phone CPUs, GPUs, and Qualcomm and MediaTek NPUs.
+          - Built **ExecuServe**, an OpenAI- and Anthropic-compatible server that runs ExecuTorch LLMs from an Android phone.
+          - Merged a fix into **PyTorch ExecuTorch** that stops LFM2 models from carrying state into a new conversation.
       - company: "[ViableView](https://www.viableview.com/)"
         position: Senior Data Engineer
         start_date: 2026-02
         end_date: present
         highlights:
-          - Built three production Python crawlers for government business registries, ingesting **2.7M records at a sustained 200K/day**.
           - Designed an email-enrichment pipeline processing **2.6M records at 240K/day** and achieving **0.94 macro-F1** on validation.
-          - Architected an autoscaled multi-cloud validation pipeline processing 800K records at 80K/day.
+          - Built ingestion for 2.7M registry records at 200K/day and an autoscaled multi-cloud pipeline validating 800K at 80K/day.
       - company: "[Kollab](https://www.kollab.com/)"
         position: Associate Cloud Engineer
         start_date: 2025-09
         end_date: 2026-02
         highlights:
           - Delivered a patient-search AI system for a leading Philippine hospital in **30 days** using Google Cloud, Vertex AI, and AlloyDB.
-          - Built four cloud-hosted systems for employee, tax, facility, and inventory workflows.
-      - company: "[AI First](https://www.aifirst.ph/)"
-        position: AI Engineer Intern
-        start_date: 2024-12
-        end_date: 2025-08
-        highlights:
-          - Built a zero-cost Python pipeline for 200K+ visa-sponsoring job leads across seven markets.
 
-    # Titles are written as "**[Title](link)**, **Organization**" so an entry can
-    # omit the organization (see TESDA).
-    Speaking & Recognition:
-      - name: "**[PyTorch Day Japan 2026 Speaker](https://events.linuxfoundation.org/pytorch-day-japan/program/schedule/?id=1325509)**, **Linux Foundation**"
-        date: 2026-12
+    Projects & Research:
+      - name: "**[Small LLM Trained from Scratch to RLVR](https://huggingface.co/alpharomercoma/slm-pipeline-151m)**"
+        date: 2026-08
         highlights:
-          - 'Selected to present **“When the KV Cache Cannot Roll Back: Prefix Reuse on Android”** with Arjhine Ty in Tokyo.'
-      - name: "**[GitHub Universe 2026 Speaker](https://githubuniverse.com/)**, **GitHub**"
-        date: 2026-10
+          - Pre-trained a **151M-parameter LLM** (GQA, RoPE, SwiGLU) on **10B tokens** on one H100 in 20 hours for about $80.
+          - Implemented SFT, DPO, and GRPO in plain PyTorch, raising GSM8K answer-format compliance from 5.5% to **98.5%**.
+      - name: "**[LLM Fine-Tuning and Serving on AWS Trainium and Inferentia](https://github.com/alpharomercoma/torchneuronx)**"
+        date: 2026-08
         highlights:
-          - Selected to present findings on three local coding models vs. Copilot on TTFT, tool accuracy, and task completion in San Francisco.
-      - name: "**[PyTorch Ambassador](https://pytorch.org/programs/ambassadors/)**, **PyTorch Foundation**"
-        date: 2026-09
+          - LoRA fine-tuned Llama 3.1 8B on Trainium at **68.3% MFU** (2,952 tok/s) and served the merged model with vLLM on Inferentia2.
+      - name: "**[MI300X vs. H200 GPU Benchmark](https://github.com/alpharomercoma/MI300X-vs-H200)**"
+        date: 2026-07
         highlights:
-          - Selected for the 2026 cohort to organize events, create technical content, and mentor PyTorch users across the Philippines.
-      - name: "**[PyTorch Conference Europe 2026 Speaker](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no)**, **Linux Foundation**"
-        date: 2026-04
+          - Measured 164 vLLM serving points and 8B training; H200 trained **1.32–1.40× faster** despite MI300X's 1.32× FLOPs lead.
+          - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and alone fitting 70B in BF16.
+      - name: "**[Tagalog and Taglish Sentiment Classifier](https://github.com/alpharomercoma/taglish-sentiment-analysis)**"
+        date: 2026-07
         highlights:
-          - 'Delivered **“De-mystifying PyTorch for ASICs: When (and Why) to Move Your Development to AI Accelerators”** at Station F, Paris.'
-      - name: "**[AWS re:Invent 2025 All Builders Welcome Grantee](https://reinvent.awsevents.com/all-builders-welcome/)**, **AWS**"
+          - Fine-tuned XLM-RoBERTa to **0.729 macro-F1** (TF-IDF baseline 0.632) and cut CPU latency from 11.8 to 5.1 ms with ONNX int8.
+      - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
         highlights:
-          - Received full sponsorship covering airfare, lodging, and admission to the five-day AWS re:Invent conference in Las Vegas.
-          - Represented the Philippines as the sole Filipino among 340 international grant recipients.
-      - name: "**[GitHub Campus Expert & AWS Community Builder](https://githubcampus.expert/fit-alpha-coma/)**, **GitHub & AWS**"
+          - Built a tri-modal EVA-CLIP/Whisper/Qwen3-4B VLM achieving 96.67% accuracy and 97.19% F1.
+          - Published the model, code, and a **2,000-video multimodal dataset** spanning TikTok and YouTube Shorts.
+
+    # Titles are written as "**[Title](link)**, **Organization**" so an entry can
+    # omit the organization.
+    Speaking & Community:
+      - name: "**International Conference Speaker**, **PyTorch Foundation & GitHub**"
+        start_date: 2026-04
+        end_date: 2026-12
+        highlights:
+          - 'Presenting **“When the KV Cache Cannot Roll Back: Prefix Reuse on Android”** at [PyTorch Day Japan 2026](https://events.linuxfoundation.org/pytorch-day-japan/program/schedule/?id=1325509), Tokyo.'
+          - Presenting findings on three local coding models vs. Copilot at [GitHub Universe 2026](https://githubuniverse.com/), San Francisco.
+          - 'Delivered **“De-mystifying PyTorch for ASICs: When (and Why) to Move Your Development to AI Accelerators”** in [Paris](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no).'
+      - name: "**[PyTorch Ambassador](https://pytorch.org/programs/ambassadors/)**, **[GitHub Campus Expert](https://githubcampus.expert/fit-alpha-coma/)**, **AWS Community Builder**"
         start_date: 2024-12
         end_date: present
         highlights:
-          - Trained 4,000+ students and professionals in AI/ML, software engineering, and data engineering.
-          - Delivered 25+ talks at SOFTCON and events hosted by AWS, Microsoft, and universities across the Philippines.
+          - Selected as a 2026 PyTorch Foundation Ambassador to run events, create content, and mentor PyTorch users in the Philippines.
+          - Trained 4,000+ students and professionals in AI/ML, software engineering, and data engineering across 25+ talks.
           - Secured $30,000+ in sponsorships from GitHub, Tavily, and Vercel to support technology education across Luzon.
-      - name: "**[TESDA Academe Expert — AI Competency Standards](https://www.linkedin.com/posts/alpharomercoma_its-an-honor-to-have-been-invited-by-activity-7369037611228688385-hcyV)**"
-        date: 2025-08
-        highlights:
-          - Selected by the Philippines' national technical-vocational authority to validate **two national AI and data competency qualifications**.
 
     # Laid out in two columns, filled top to bottom.
     Certifications:
+      - bullet: PyTorch Certified Associate (PTCA), Linux Foundation
       - bullet: "[Google: Professional Machine Learning Engineer](https://www.credly.com/badges/4199288a-f45e-4584-87d3-a73397d2692c/)"
       - bullet: "[AWS Certified Machine Learning Engineer – Associate](https://www.credly.com/badges/89a55bb2-8f32-4938-84a1-683f21bb0e64)"
+      - bullet: Nebius Agentic AI Builder and AI CloudOps Engineer
       - bullet: "[Google: Associate Cloud Engineer](https://www.credly.com/badges/197a51dd-409d-40b1-ba17-2b78bb1c30b1)"
-      - bullet: "[Microsoft Certified: Azure AI Engineer Associate](https://learn.microsoft.com/api/credentials/share/en-us/alpharomercoma/BEECBE94524A21B4?sharingId)"
+      - bullet: Oracle Cloud Infrastructure 2025 Generative AI Professional
 
     Education:
       - institution: "[FEU Institute of Technology](https://www.feutech.edu.ph/)"
@@ -110,11 +110,15 @@ cv:
         degree: BS
         start_date: 2022-08
         end_date: 2026-09
-        summary: 4-Year President's Scholar with High Honors; CS Academic Varsity; Leadership Awardee
+        summary: 4-Year President's Scholar with High Honors; Leadership Award (3 of 921 graduates); CS Academic Varsity
 
-    Awards:
+    Awards & Recognition:
+      - name: "**[AWS re:Invent 2025 All Builders Welcome Grantee](https://reinvent.awsevents.com/all-builders-welcome/)**, **AWS**: sole Filipino among 340 international recipients"
+        date: 2025-12
       - name: "**[PH100 Honoree](https://stellarph.io/programs/ph100/2025)**, **StellarPH**"
         date: 2025-09
+      - name: "**[TESDA Academe Expert](https://www.linkedin.com/posts/alpharomercoma_its-an-honor-to-have-been-invited-by-activity-7369037611228688385-hcyV)**: validated two Philippine national AI and data competency qualifications"
+        date: 2025-08
       - name: "**[National AI Prompt Design Challenge Champion](https://www.linkedin.com/posts/alpharomercoma_we-are-national-ai-prompt-champions-activity-7354141374771838976-KMUw)**, **Straits Interactive**"
         date: 2025-07
 
