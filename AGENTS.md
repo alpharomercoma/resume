@@ -66,7 +66,11 @@ or `git log -p Alpha_Romer_Coma_CV.yaml`.
   `"**[Title](link)**, **Organization**"` or just `"**[Title](link)**"`. An award can
   carry a one-line detail after a colon: `"**[Title](link)**, **Org**: detail"`.
 - Talks are grouped under one "International Conference Speaker" entry, one bullet
-  per talk; community roles share one entry. Add to these rather than adding entries.
+  per talk, all in one format with no bold:
+  `Presenting “Exact Title” at [Event](session link), City.` (`Presented` once given).
+  If a title is too long for one line, quote only its main title, up to the colon;
+  never reword a title. Community roles share one entry. Add to these rather than
+  adding entries.
 - `Certifications` entries use `bullet:` and render in two columns, filled top to bottom.
 - `Education` renders "**DEGREE in AREA, INSTITUTION**" with `summary` as the
   indented line underneath.
