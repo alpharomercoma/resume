@@ -72,6 +72,10 @@ cv:
         date: 2026-10
         highlights:
           - Selected to present findings on three local coding models vs. Copilot on TTFT, tool accuracy, and task completion in San Francisco.
+      - name: "**[PyTorch Ambassador](https://pytorch.org/programs/ambassadors/)**, **PyTorch Foundation**"
+        date: 2026-09
+        highlights:
+          - Selected for the 2026 cohort to organize events, create technical content, and mentor PyTorch users across the Philippines.
       - name: "**[PyTorch Conference Europe 2026 Speaker](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no)**, **Linux Foundation**"
         date: 2026-04
         highlights:
