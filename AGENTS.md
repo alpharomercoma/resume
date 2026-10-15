@@ -26,7 +26,8 @@ icon glyphs or invisible characters. Never commit `rendercv_output/`; CI rebuild
    The commit subjects become the release notes.
 4. Push to `master`. `.github/workflows/release.yml` re-renders, runs the same
    check, and publishes a release tagged `vYYYY.MM.DD` (`.2`, `.3` for later
-   releases the same day). The website picks it up within an hour.
+   releases the same day), then refreshes alpharomer.com/resume so the new
+   version is live within seconds.
 
 Every release is a version: to see or restore an old resume, use the release list
 or `git log -p Alpha_Romer_Coma_CV.yaml`.
