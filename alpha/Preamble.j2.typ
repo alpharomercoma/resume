@@ -82,7 +82,8 @@
   })
   v(6.3pt)
   set text(fill: ink)
-  align(center, contacts.join([ #h(4pt)|#h(4pt) ]))
+  // FlowCV sets the separators 0.75pt below the baseline; so do we.
+  align(center, contacts.join([ #h(4pt)#text(baseline: 0.75pt)[|]#h(4pt) ]))
 }
 
 #let intro(body) = {
@@ -97,7 +98,7 @@
 // lines (bullets or a note) underneath, so nothing wraps beside the date.
 #let entry(title, date, body) = block(breakable: false, {
   // Title and date share one line of text, so extractors read them together.
-  block[#title#h(1fr)#text(fill: muted, date)]
+  block[#title#h(1fr)#box(text(fill: muted, date))]
   body
 })
 

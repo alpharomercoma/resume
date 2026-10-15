@@ -4,6 +4,7 @@ Run by scripts/render.sh after every render, locally and in CI:
     uv run python scripts/check.py rendercv_output/Alpha_Romer_Coma_CV.pdf
 """
 
+import re
 import sys
 import unicodedata
 
@@ -11,13 +12,25 @@ import pymupdf
 
 ALLOWED_FONTS = {"Roboto-Regular", "Roboto-Bold", "Roboto-Italic", "Lato-Regular"}
 BULLET_FONT = "Lato-Regular"  # the theme sets its bullet glyph in Lato
+RIGHT_MARGIN = 28.35  # 1cm, as set in alpha/Preamble.j2.typ
+DATE = re.compile(r"^[A-Z][a-z]{2} \d{4}( – ([A-Z][a-z]{2} \d{4}|Present))?$")
 
 
 def fail(errors: list[str], message: str) -> None:
     errors.append(message)
 
 
-def main(path: str) -> int:
+def expected_dates(yaml_path: str) -> int:
+    """Count entries in the YAML that carry a date, to catch dates that vanish or split."""
+    count = 0
+    for line in open(yaml_path, encoding="utf-8"):
+        key = line.strip().removeprefix("- ").split(":", 1)[0]
+        if key in ("date", "start_date"):
+            count += 1
+    return count
+
+
+def main(path: str, yaml_path: str = "Alpha_Romer_Coma_CV.yaml") -> int:
     doc = pymupdf.open(path)
     errors: list[str] = []
 
@@ -39,7 +52,13 @@ def main(path: str) -> int:
                 if font not in ALLOWED_FONTS:
                     fail(errors, f"unexpected font {font!r} in {span_text!r}")
                 spans.append(
-                    {"x": glyphs[0]["bbox"][0], "y": glyphs[0]["origin"][1], "font": font, "text": span_text}
+                    {
+                        "x": glyphs[0]["bbox"][0],
+                        "right": glyphs[-1]["bbox"][2],
+                        "y": glyphs[0]["origin"][1],
+                        "font": font,
+                        "text": span_text,
+                    }
                 )
 
     text = page.get_text()
@@ -71,10 +90,23 @@ def main(path: str) -> int:
     if not bullets:
         fail(errors, "no bullets found; did the theme's bullet font change?")
 
+    # Dates sit flush right on their entry's title line. A title that grows too
+    # long pushes its date onto a line of its own, away from the right margin.
+    right_edge = page.rect.width - RIGHT_MARGIN
+    dates = [s for s in spans if DATE.match(s["text"].strip())]
+    for date in dates:
+        if abs(date["right"] - right_edge) > 1:
+            fail(errors, f"date {date['text'].strip()!r} is not flush right; is its title too long?")
+        elif not any(abs(w["y"] - date["y"]) < 0.5 and w["x"] < date["x"] - 20 for w in spans):
+            fail(errors, f"date {date['text'].strip()!r} sits on a line of its own; is its title too long?")
+    want = expected_dates(yaml_path)
+    if len(dates) != want:
+        fail(errors, f"found {len(dates)} intact dates but the YAML has {want}; one may have wrapped or split")
+
     if errors:
         print("check failed:", *errors, sep="\n  - ", file=sys.stderr)
         return 1
-    print(f"ok: 1 page, {len(bullets)} bullets each on one line, clean text layer")
+    print(f"ok: 1 page, {len(bullets)} bullets each on one line, {len(dates)} dates flush right, clean text layer")
     return 0
 
 
