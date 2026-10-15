@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
 #
 # Single source of truth for Alpha Romer Coma's resume.
-# Edit this file, then run `uv run rendercv render Alpha_Romer_Coma_CV.yaml`.
-# See AGENTS.md for the editing rules and the release flow.
+# Edit this file, then run `./scripts/render.sh`.
+# See AGENTS.md for the editing rules and the release flow; the look lives in alpha/.
 cv:
   name: Alpha Romer Coma
   headline: Machine Learning Engineer
@@ -14,6 +14,7 @@ cv:
     - network: GitHub
       username: alpharomercoma
   sections:
+    # Rendered centered under the contact line, with no heading.
     Summary:
       - ML engineer specializing in accelerated computing, edge AI, and data pipelines processing 500K+ records daily.
 
@@ -26,12 +27,12 @@ cv:
         details: React, TypeScript, Next.js, Node.js, Express, PostgreSQL, Docker, Kubernetes
 
     Projects & Research:
-      - name: "[OpenWeights: Edge Inference](https://github.com/alpharomercoma/openweights)"
+      - name: "**[OpenWeights: Edge Inference](https://github.com/alpharomercoma/openweights)**"
         date: 2026-08
         highlights:
           - Shipped an open-source llama.cpp Android app for fully on-device language and multimodal inference.
           - Built Hugging Face discovery and GGUF inspection for memory-fit estimates, tokens/s, TTFT, and context.
-      - name: "[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)"
+      - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
         highlights:
           - Built a tri-modal EVA-CLIP/Whisper/Qwen3-4B VLM achieving 96.67% accuracy and 97.19% F1.
@@ -60,47 +61,40 @@ cv:
         highlights:
           - Built a zero-cost Python pipeline for 200K+ visa-sponsoring job leads across seven markets.
 
-    Speaking, Recognition & Awards:
-      - company: "[GitHub Universe 2026 Speaker](https://githubuniverse.com/)"
-        position: GitHub
+    # Titles are written as "**[Title](link)**, **Organization**" so an entry can
+    # omit the organization (see TESDA).
+    Speaking & Recognition:
+      - name: "**[GitHub Universe 2026 Speaker](https://githubuniverse.com/)**, **GitHub**"
         date: 2026-10
         highlights:
           - Selected to benchmark three local coding models against Copilot on TTFT, tool accuracy, and task completion.
-      - company: "[PyTorch Conference Europe 2026 Speaker](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no)"
-        position: Linux Foundation
+      - name: "**[PyTorch Conference Europe 2026 Speaker](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no)**, **Linux Foundation**"
         date: 2026-04
         highlights:
           - 'Delivered **“De-mystifying PyTorch for ASICs: When (and Why) to Move Your Development to AI Accelerators”** at Station F, Paris.'
-      - company: "[AWS re:Invent 2025 All Builders Welcome Grantee](https://reinvent.awsevents.com/all-builders-welcome/)"
-        position: AWS
+      - name: "**[AWS re:Invent 2025 All Builders Welcome Grantee](https://reinvent.awsevents.com/all-builders-welcome/)**, **AWS**"
         date: 2025-12
         highlights:
           - Received full sponsorship covering airfare, lodging, and admission to the five-day AWS re:Invent conference in Las Vegas.
           - Represented the Philippines as the sole Filipino among 340 international grant recipients.
-      - company: "[GitHub Campus Expert & AWS Community Builder](https://githubcampus.expert/fit-alpha-coma/)"
-        position: GitHub & AWS
+      - name: "**[GitHub Campus Expert & AWS Community Builder](https://githubcampus.expert/fit-alpha-coma/)**, **GitHub & AWS**"
         start_date: 2024-12
         end_date: present
         highlights:
           - Trained 4,000+ students and professionals in AI/ML, software engineering, and data engineering.
           - Delivered 25+ talks at SOFTCON and events hosted by AWS, Microsoft, and universities across the Philippines.
           - Secured $30,000+ in sponsorships from GitHub, Tavily, and Vercel to support technology education across Luzon.
-      - company: "[Academe Expert — AI Competency Standards](https://www.linkedin.com/posts/alpharomercoma_its-an-honor-to-have-been-invited-by-activity-7369037611228688385-hcyV)"
-        position: TESDA
+      - name: "**[TESDA Academe Expert — AI Competency Standards](https://www.linkedin.com/posts/alpharomercoma_its-an-honor-to-have-been-invited-by-activity-7369037611228688385-hcyV)**"
         date: 2025-08
         highlights:
           - Selected by the Philippines' national technical-vocational authority to validate **two national AI and data competency qualifications**.
-      - company: "[PH100 Honoree](https://stellarph.io/programs/ph100/2025)"
-        position: StellarPH
-        date: 2025-09
-      - company: "[National AI Prompt Design Challenge Champion](https://www.linkedin.com/posts/alpharomercoma_we-are-national-ai-prompt-champions-activity-7354141374771838976-KMUw)"
-        position: Straits Interactive
-        date: 2025-07
 
-
+    # Laid out in two columns, filled top to bottom.
     Certifications:
-      - "[Google: Professional Machine Learning Engineer](https://www.credly.com/badges/4199288a-f45e-4584-87d3-a73397d2692c/) · [AWS Certified Machine Learning Engineer – Associate](https://www.credly.com/badges/89a55bb2-8f32-4938-84a1-683f21bb0e64)"
-      - "[Google: Associate Cloud Engineer](https://www.credly.com/badges/197a51dd-409d-40b1-ba17-2b78bb1c30b1) · [Microsoft Certified: Azure AI Engineer Associate](https://learn.microsoft.com/api/credentials/share/en-us/alpharomercoma/BEECBE94524A21B4?sharingId)"
+      - bullet: "[Google: Professional Machine Learning Engineer](https://www.credly.com/badges/4199288a-f45e-4584-87d3-a73397d2692c/)"
+      - bullet: "[AWS Certified Machine Learning Engineer – Associate](https://www.credly.com/badges/89a55bb2-8f32-4938-84a1-683f21bb0e64)"
+      - bullet: "[Google: Associate Cloud Engineer](https://www.credly.com/badges/197a51dd-409d-40b1-ba17-2b78bb1c30b1)"
+      - bullet: "[Microsoft Certified: Azure AI Engineer Associate](https://learn.microsoft.com/api/credentials/share/en-us/alpharomercoma/BEECBE94524A21B4?sharingId)"
 
     Education:
       - institution: "[FEU Institute of Technology](https://www.feutech.edu.ph/)"
@@ -108,44 +102,46 @@ cv:
         degree: BS
         start_date: 2022-08
         end_date: 2026-09
-        highlights:
-          - 4-Year President's Scholar with High Honors; CS Academic Varsity; Leadership Awardee.
+        summary: 4-Year President's Scholar with High Honors; CS Academic Varsity; Leadership Awardee
+
+    Awards:
+      - name: "**[PH100 Honoree](https://stellarph.io/programs/ph100/2025)**, **StellarPH**"
+        date: 2025-09
+      - name: "**[National AI Prompt Design Challenge Champion](https://www.linkedin.com/posts/alpharomercoma_we-are-national-ai-prompt-champions-activity-7354141374771838976-KMUw)**, **Straits Interactive**"
+        date: 2025-07
 
 design:
-  theme: classic
+  theme: alpha
   page:
     size: a4
-    top_margin: 0.45in
-    bottom_margin: 0.45in
-    left_margin: 0.5in
-    right_margin: 0.5in
-    show_footer: false
-  typography:
-    line_spacing: 0.45em
-    alignment: left
-    font_size:
-      body: 9.5pt
-      name: 26pt
-  header:
-    space_below_name: 0.3cm
-    space_below_headline: 0.3cm
-    space_below_connections: 0.25cm
-  section_titles:
-    space_above: 0.3cm
-    space_below: 0.18cm
-  sections:
-    space_between_regular_entries: 0.5em
-    show_time_spans_in: []
-  entries:
-    date_and_location_width: 3.2cm
-  links:
-    show_external_link_icon: false
+  templates:
+    single_date: MONTH_ABBREVIATION YEAR
+    date_range: START_DATE – END_DATE
+    one_line_entry:
+      main_column: "**LABEL:** DETAILS"
+    normal_entry:
+      main_column: |-
+        NAME
+        HIGHLIGHTS
+      date_and_location_column: DATE
+    experience_entry:
+      main_column: |-
+        **COMPANY**, **POSITION**
+        HIGHLIGHTS
+      date_and_location_column: DATE
+    education_entry:
+      main_column: |-
+        **DEGREE in AREA, INSTITUTION**
+        SUMMARY
+      date_and_location_column: DATE
 
 locale:
   language: english
+  present: Present
   month_abbreviations: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
 settings:
   current_date: today
+  pdf_title: NAME – Resume
   render_command:
     output_folder: rendercv_output
