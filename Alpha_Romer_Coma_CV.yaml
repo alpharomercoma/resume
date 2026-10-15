@@ -20,17 +20,17 @@ cv:
 
     Technical Skills:
       - label: Training & Post-Training
-        details: PyTorch, Hugging Face Transformers, PEFT/LoRA, TRL, SFT, DPO, GRPO/RLVR, torch.compile, scikit-learn
+        details: PyTorch, Hugging Face Transformers, PEFT/LoRA, TRL, DPO, GRPO, scikit-learn
       - label: Inference & Optimization
-        details: ExecuTorch, llama.cpp, vLLM, ONNX Runtime, LiteRT, MLX, GGUF/GPTQ quantization, speculative decoding
+        details: ExecuTorch, llama.cpp, vLLM, ONNX Runtime, MLX, quantization (GGUF, GPTQ)
       - label: Accelerators
-        details: NVIDIA H100/H200 (CUDA), AMD MI300X (ROCm), AWS Trainium/Inferentia, Google TPU, Qualcomm/MediaTek NPUs
+        details: CUDA (H100, H200), ROCm (MI300X), AWS Trainium/Inferentia, Google TPU, mobile NPUs
       - label: Software & Cloud
-        details: Python, Kotlin, TypeScript, SQL, Docker, Kubernetes, Terraform, GitHub Actions, AWS, Google Cloud, pgvector
+        details: Python, Kotlin, TypeScript, SQL, Docker, Kubernetes, Terraform, AWS, Google Cloud
 
     Professional Experience:
       - company: "[Experimental Machines](https://experimentalmachines.org/)"
-        position: Co-Founder
+        position: Machine Learning Engineer
         start_date: 2026-08
         end_date: present
         highlights:
@@ -38,6 +38,8 @@ cv:
           - Published **16 ExecuTorch LLM exports** to Hugging Face for phone CPUs, GPUs, and Qualcomm and MediaTek NPUs.
           - Built **ExecuServe**, an OpenAI- and Anthropic-compatible server that runs ExecuTorch LLMs from an Android phone.
           - Merged a fix into **PyTorch ExecuTorch** that stops LFM2 models from carrying state into a new conversation.
+          - Fixed RoPE tables in MediaTek's NPU export for Qwen and Llama, matching the Hugging Face reference over 301 tokens.
+          - Secured a **$2,000 compute grant** from Lambda for the team's GPU training and benchmarking work.
       - company: "[ViableView](https://www.viableview.com/)"
         position: Senior Data Engineer
         start_date: 2026-02
@@ -62,15 +64,12 @@ cv:
         date: 2026-08
         highlights:
           - LoRA fine-tuned Llama 3.1 8B on Trainium at **68.3% MFU** (2,952 tok/s) and served the merged model with vLLM on Inferentia2.
+          - Verified compiled models bit-exact against CPU on 10,000 ImageNet images and caught a CLIP graph silently returning NaN.
       - name: "**[MI300X vs. H200 GPU Benchmark](https://github.com/alpharomercoma/MI300X-vs-H200)**"
         date: 2026-07
         highlights:
           - Measured 164 vLLM serving points and 8B training; H200 trained **1.32–1.40× faster** despite MI300X's 1.32× FLOPs lead.
           - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and alone fitting 70B in BF16.
-      - name: "**[Tagalog and Taglish Sentiment Classifier](https://github.com/alpharomercoma/taglish-sentiment-analysis)**"
-        date: 2026-07
-        highlights:
-          - Fine-tuned XLM-RoBERTa to **0.729 macro-F1** (TF-IDF baseline 0.632) and cut CPU latency from 11.8 to 5.1 ms with ONNX int8.
       - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
         highlights:
@@ -84,9 +83,9 @@ cv:
         start_date: 2026-04
         end_date: 2026-12
         highlights:
-          - 'Presenting **“When the KV Cache Cannot Roll Back: Prefix Reuse on Android”** at [PyTorch Day Japan 2026](https://events.linuxfoundation.org/pytorch-day-japan/program/schedule/?id=1325509), Tokyo.'
-          - Presenting findings on three local coding models vs. Copilot at [GitHub Universe 2026](https://githubuniverse.com/), San Francisco.
-          - 'Delivered **“De-mystifying PyTorch for ASICs: When (and Why) to Move Your Development to AI Accelerators”** in [Paris](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no).'
+          - 'Presenting “When the KV Cache Cannot Roll Back: Prefix Reuse on Android” at [PyTorch Day Japan](https://events.linuxfoundation.org/pytorch-day-japan/program/schedule/?id=1325509), Tokyo.'
+          - Presenting “When Is Local Copilot Worth It?” at [GitHub Universe](https://githubuniverse.com/), San Francisco.
+          - 'Presented “De-mystifying PyTorch for ASICs” at [PyTorch Conference Europe](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no), Paris.'
       - name: "**[PyTorch Ambassador](https://pytorch.org/programs/ambassadors/)**, **[GitHub Campus Expert](https://githubcampus.expert/fit-alpha-coma/)**, **AWS Community Builder**"
         start_date: 2024-12
         end_date: present
@@ -97,12 +96,10 @@ cv:
 
     # Laid out in two columns, filled top to bottom.
     Certifications:
-      - bullet: PyTorch Certified Associate (PTCA), Linux Foundation
+      - bullet: "[PyTorch Certified Associate (PTCA), Linux Foundation](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/31baf194-fb27-425d-9db8-58ca8a362c5c-alpha-romer-coma-7e12c937-7cfa-49bf-8096-1ce19196b9d1-certificate.pdf)"
       - bullet: "[Google: Professional Machine Learning Engineer](https://www.credly.com/badges/4199288a-f45e-4584-87d3-a73397d2692c/)"
       - bullet: "[AWS Certified Machine Learning Engineer – Associate](https://www.credly.com/badges/89a55bb2-8f32-4938-84a1-683f21bb0e64)"
-      - bullet: Nebius Agentic AI Builder and AI CloudOps Engineer
       - bullet: "[Google: Associate Cloud Engineer](https://www.credly.com/badges/197a51dd-409d-40b1-ba17-2b78bb1c30b1)"
-      - bullet: Oracle Cloud Infrastructure 2025 Generative AI Professional
 
     Education:
       - institution: "[FEU Institute of Technology](https://www.feutech.edu.ph/)"
