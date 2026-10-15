@@ -55,6 +55,8 @@ or `git log -p Alpha_Romer_Coma_CV.yaml`.
 - **Link titles, not URLs.** Markdown links on the entry title get the small
   external-link mark automatically.
 - **Quote any line containing `: `** (colon + space), or YAML reads it as a mapping.
+- **Never put `;` right after `**bold**`.** RenderCV emits `#strong[...]` and Typst
+  swallows a semicolon that follows it; use a comma or reword.
 
 ## How the YAML maps to the layout
 
