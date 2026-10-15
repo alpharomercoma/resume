@@ -71,7 +71,7 @@ cv:
       - name: "**[GitHub Universe 2026 Speaker](https://githubuniverse.com/)**, **GitHub**"
         date: 2026-10
         highlights:
-          - Selected to benchmark three local coding models against Copilot on TTFT, tool accuracy, and task completion in San Francisco.
+          - Selected to present findings on three local coding models vs. Copilot on TTFT, tool accuracy, and task completion in San Francisco.
       - name: "**[PyTorch Conference Europe 2026 Speaker](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no)**, **Linux Foundation**"
         date: 2026-04
         highlights:
