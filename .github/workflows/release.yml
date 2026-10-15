@@ -34,7 +34,7 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Render (fails if the CV is longer than one page)
+      - name: Render and check (one page, no wrapped bullets, clean text layer)
         run: ./scripts/render.sh
 
       - uses: actions/upload-artifact@v4
