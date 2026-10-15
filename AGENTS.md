@@ -44,6 +44,12 @@ or `git log -p Alpha_Romer_Coma_CV.yaml`.
   older bullet. Ask before dropping a whole entry.
 - **Keep the voice.** Bullets start with a past-tense verb, end with a period, and
   lead with a concrete number. Bold (`**...**`) only the headline metric or phrase.
+- **Machine learning first.** Alpha is applying for competitive ML roles. Projects must
+  be machine learning or deep learning work (training, post-training, inference,
+  accelerators, evaluation); never scrapers, web apps, or tooling. Lead with the
+  measured result, and say exactly what moved (e.g. answer format, not accuracy).
+- **Link only public pages.** Some repos are private; link the public Hugging Face
+  model, site, or event page instead.
 - **Newest first** within every section. Dates are `YYYY-MM`; ongoing roles use
   `end_date: present`.
 - **Link titles, not URLs.** Markdown links on the entry title get the small
@@ -55,9 +61,12 @@ or `git log -p Alpha_Romer_Coma_CV.yaml`.
 - `Summary` is special: it renders centered under the contact line with no heading.
 - `Professional Experience` entries use `company` + `position` and render as
   "**Company**, **Position**".
-- `Projects & Research`, `Speaking & Recognition`, and `Awards` entries use `name`,
-  written with explicit bold so the organization is optional:
-  `"**[Title](link)**, **Organization**"` or just `"**[Title](link)**"`.
+- `Projects & Research`, `Speaking & Community`, and `Awards & Recognition` entries
+  use `name`, written with explicit bold so the organization is optional:
+  `"**[Title](link)**, **Organization**"` or just `"**[Title](link)**"`. An award can
+  carry a one-line detail after a colon: `"**[Title](link)**, **Org**: detail"`.
+- Talks are grouped under one "International Conference Speaker" entry, one bullet
+  per talk; community roles share one entry. Add to these rather than adding entries.
 - `Certifications` entries use `bullet:` and render in two columns, filled top to bottom.
 - `Education` renders "**DEGREE in AREA, INSTITUTION**" with `summary` as the
   indented line underneath.
