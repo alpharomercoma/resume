@@ -9,7 +9,8 @@ on:
       - Alpha_Romer_Coma_CV.yaml
       - pyproject.toml
       - uv.lock
-      - scripts/render.sh
+      - scripts/**
+      - alpha/**
       - .github/workflows/release.yml
   pull_request:
   workflow_dispatch:
@@ -33,7 +34,7 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Render (fails if the CV is longer than one page)
+      - name: Render and check (one page, no wrapped bullets, clean text layer)
         run: ./scripts/render.sh
 
       - uses: actions/upload-artifact@v4

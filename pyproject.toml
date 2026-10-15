@@ -6,3 +6,8 @@ requires-python = ">=3.13"
 dependencies = [
     "rendercv[full]>=2.8",
 ]
+
+[dependency-groups]
+dev = [
+    "pymupdf>=1.28.2",
+]
