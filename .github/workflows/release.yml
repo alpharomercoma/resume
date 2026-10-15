@@ -58,7 +58,7 @@ jobs:
 
           prev=$(git describe --tags --abbrev=0 2>/dev/null || true)
           if [ -n "$prev" ]; then
-            notes=$(git log --pretty='- %s (%h)' "$prev..HEAD" -- Alpha_Romer_Coma_CV.yaml)
+            notes=$(git log --pretty='- %s (%h)' "$prev..HEAD" -- Alpha_Romer_Coma_CV.yaml alpha)
           else
             notes="- Initial RenderCV release."
           fi
@@ -84,3 +84,18 @@ jobs:
             rendercv_output/Alpha_Romer_Coma_CV.html \
             rendercv_output/Alpha_Romer_Coma_CV.yaml \
             rendercv_output/version.json
+
+      # alpharomer.com caches the latest release; expire it now instead of
+      # waiting out the hourly refresh.
+      - name: Refresh alpharomer.com/resume
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        env:
+          SECRET: ${{ secrets.RESUME_REVALIDATE_SECRET }}
+        run: |
+          if [ -z "$SECRET" ]; then
+            echo "RESUME_REVALIDATE_SECRET is not set; the site refreshes within the hour."
+            exit 0
+          fi
+          curl -fsS --retry 3 --retry-all-errors -X POST \
+            -H "Authorization: Bearer $SECRET" \
+            https://alpharomer.com/api/revalidate/resume
