@@ -59,7 +59,6 @@ cv:
         date: 2026-08
         highlights:
           - Pre-trained a **151M-parameter LLM** (GQA, RoPE, SwiGLU) on **8.26B tokens**, part of a 20-hour full pipeline on one H100.
-          - Implemented SFT, DPO, and GRPO in plain PyTorch; GSM8K answer format went from 5.5% after SFT to **98.5%** after GRPO.
       - name: "**[LLM Fine-Tuning and Serving on AWS Trainium and Inferentia](https://github.com/alpharomercoma/torchneuronx)**"
         date: 2026-08
         highlights:
