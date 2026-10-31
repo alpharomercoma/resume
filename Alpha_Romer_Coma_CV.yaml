@@ -83,8 +83,7 @@ cv:
         end_date: 2026-12
         highlights:
           - 'Presenting “When the KV Cache Cannot Roll Back: Prefix Reuse on Android” at [PyTorch Day Japan](https://events.linuxfoundation.org/pytorch-day-japan/program/schedule/?id=1325509), Tokyo.'
-          - 'Presenting “The Search It Never Made: When a 1.2B On-Device Model Should Call Web Search” at [PyTorch Day Korea](https://pytorchday.kr/), Seoul.'
-          - Presenting “When Is Local Copilot Worth It?” at [GitHub Universe](https://githubuniverse.com/), San Francisco.
+          - Presented “When Is Local Copilot Worth It?” at [GitHub Universe](https://githubuniverse.com/), San Francisco.
           - 'Presented “De-mystifying PyTorch for ASICs” at [PyTorch Conference Europe](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no), Paris.'
       - name: "**[PyTorch Ambassador](https://pytorch.org/programs/ambassadors/)**, **[GitHub Campus Expert](https://githubcampus.expert/fit-alpha-coma/)**, **AWS Community Builder**"
         start_date: 2024-12
