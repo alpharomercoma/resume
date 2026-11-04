@@ -56,10 +56,6 @@ cv:
           - Delivered a patient-search AI system for a Philippine hospital in **30 days** using Google Cloud, Vertex AI, and AlloyDB.
 
     Projects & Research:
-      - name: "**[Small LLM Trained from Scratch to RLVR](https://huggingface.co/alpharomercoma/slm-pipeline-151m)**"
-        date: 2026-08
-        highlights:
-          - Pre-trained a **151M-parameter LLM** (GQA, RoPE, SwiGLU) on **8.26B tokens**, part of a 20-hour full pipeline on one H100.
       - name: "**[LLM Fine-Tuning and Serving on AWS Trainium and Inferentia](https://github.com/alpharomercoma/torchneuronx)**"
         date: 2026-08
         highlights:
