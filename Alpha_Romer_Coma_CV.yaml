@@ -35,10 +35,12 @@ cv:
         end_date: present
         highlights:
           - Shipped **OpenWeights** to Google Play; its ExecuTorch LFM2.5 1.2B decodes **2.3× faster** than llama.cpp on Tensor G5.
-          - Published **16 ExecuTorch LLM exports** to Hugging Face for phone CPUs, GPUs, and Qualcomm and MediaTek NPUs.
-          - Built **ExecuServe**, an OpenAI- and Anthropic-compatible server that runs ExecuTorch LLMs from an Android phone.
+          - Published **18 ExecuTorch LLMs (209 builds)** to Hugging Face for phone CPUs, GPUs, and Qualcomm and MediaTek NPUs.
+          - Built **ExecuServe**, an OpenAI- and Anthropic-compatible phone server; Qwen3-1.7B first token took **0.41 s** on NPU, 2.0 s on CPU.
           - Merged a fix into **PyTorch ExecuTorch** that stops LFM2 models from carrying state into a new conversation.
-          - Fixed RoPE in MediaTek's stock NPU export for Qwen and Llama, lifting Qwen3 top-1 match with Hugging Face to **100%**.
+          - Fixed RoPE in MediaTek's Qwen and Llama NPU export, lifting fp32 Qwen3-0.6B top-1 match with Hugging Face from 93% to **100%**.
+          - Built KV cache prefix reuse on Android, cutting Qwen3-1.7B second-turn prefill from 5,852 to **215 ms** by reusing 1,192 tokens.
+          - Measured 9 models across 9 CPU/GPU/NPU pairings on a Snapdragon 8 Elite Gen 5; NPU prefill ran **9.6–15.5×** the CPU on all 9.
           - Secured a **$2,000 compute grant** from Lambda for the team's GPU training and benchmarking work.
       - company: "[ViableView](https://www.viableview.com/)"
         position: Senior Data Engineer
@@ -62,17 +64,17 @@ cv:
       - name: "**[LLM Fine-Tuning and Serving on AWS Trainium and Inferentia](https://github.com/alpharomercoma/torchneuronx)**"
         date: 2026-08
         highlights:
-          - LoRA fine-tuned Llama 3.1 8B on Trainium at **68.3% MFU** (2,952 tok/s) and served the merged model with vLLM on Inferentia2.
+          - LoRA fine-tuned Llama 3.1 8B on Trainium1 at **68.3% MFU** (2,952 tok/s) and served the merged model with vLLM on Inferentia2.
           - Matched CPU labels on all **10,000 ImageNet images** for compiled CLIP and SigLIP, and caught a CLIP graph returning NaN.
       - name: "**[MI300X vs. H200 GPU Benchmark](https://github.com/alpharomercoma/MI300X-vs-H200)**"
         date: 2026-07
         highlights:
           - Measured 164 vLLM serving points; H200 ran 8B training steps **1.32–1.40× faster** despite MI300X's 1.32× FLOPs lead.
-          - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and fitting 70B in BF16 where H200 cannot.
+          - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and serving 70B BF16, which H200 cannot.
       - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
         highlights:
-          - Built a tri-modal EVA-CLIP/Whisper/Qwen3-4B VLM detecting “sludge” videos at **97.19% F1** on 300 held-out videos.
+          - Led a tri-modal EVA-CLIP/Whisper/Qwen3-4B VLM build detecting “sludge” videos at **97.19% F1** on 300 held-out videos.
           - Published the model, code, and a **2,000-video multimodal dataset** spanning TikTok and YouTube Shorts.
 
     # Titles are written as "**[Title](link)**, **Organization**" so an entry can
@@ -83,7 +85,7 @@ cv:
         end_date: 2026-12
         highlights:
           - 'Presenting “When the KV Cache Cannot Roll Back: Prefix Reuse on Android” at [PyTorch Day Japan](https://events.linuxfoundation.org/pytorch-day-japan/program/schedule/?id=1325509), Tokyo.'
-          - Presented “When Is Local Copilot Worth It?” at [GitHub Universe](https://githubuniverse.com/), San Francisco.
+          - Presented “When is local Copilot worth it?” at [GitHub Universe](https://reg.githubuniverse.com/flow/github/universe26/attendee-portal/page/sessioncatalog/session/1777208642747001yQNz), San Francisco.
           - 'Presented “De-mystifying PyTorch for ASICs” at [PyTorch Conference Europe](https://pytorchconferenceeu2026.sched.com/event/2HirM/de-mystifying-pytorch-for-asics-when-and-why-to-move-your-development-to-ai-accelerators-alpha-romer-coma-kollab-philippines?iframe=no), Paris.'
       - name: "**[PyTorch Ambassador](https://pytorch.org/programs/ambassadors/)**, **[GitHub Campus Expert](https://githubcampus.expert/fit-alpha-coma/)**, **AWS Community Builder**"
         start_date: 2024-12
@@ -109,7 +111,7 @@ cv:
         summary: 4-Year President's Scholar with High Honors; Leadership Award (3 of 921 graduates); CS Academic Varsity
 
     Awards & Recognition:
-      - name: "**[AWS re:Invent 2025 All Builders Welcome Grantee](https://reinvent.awsevents.com/all-builders-welcome/)**, **AWS**: sole Filipino among 340 international recipients"
+      - name: "**[AWS re:Invent 2025 All Builders Welcome Grantee](https://aws.amazon.com/events/reinvent/experiences/all-builders-welcome/)**, **AWS**: sole Filipino among 340 international recipients"
         date: 2025-12
       - name: "**[PH100 Honoree](https://stellarph.io/programs/ph100/2025)**, **StellarPH**"
         date: 2025-09
