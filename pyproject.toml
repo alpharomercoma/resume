@@ -9,5 +9,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pdfminer-six>=20260107",
     "pymupdf>=1.28.2",
+    "pypdf>=7.0.1",
+    "pytest>=9.2.0",
+    "ruamel-yaml>=0.19.1",
 ]

@@ -1,0 +1,12 @@
+{
+  "name": "resume-ats-check",
+  "private": true,
+  "description": "pdf.js text extraction for the resume's ATS check (scripts/ats_check.py)",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "6.4.299"
+  }
+}

@@ -9,7 +9,11 @@ on:
       - Alpha_Romer_Coma_CV.yaml
       - pyproject.toml
       - uv.lock
+      - package.json
+      - package-lock.json
       - scripts/**
+      - ats/**
+      - tests/**
       - alpha/**
       - .github/workflows/release.yml
   pull_request:
@@ -34,7 +38,19 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Render and check (one page, no wrapped bullets, clean text layer)
+      # pdf.js is one of the ATS check's four text extractors.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install pdf.js
+        run: npm ci
+
+      # Layout check, ATS check (results in the run summary) and the checker's own tests.
+      - name: Render and check
+        env:
+          ATS_REQUIRE_PDFJS: "1"
         run: ./scripts/render.sh
 
       - uses: actions/upload-artifact@v4

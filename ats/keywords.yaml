@@ -1,0 +1,57 @@
+# Terms recruiters and ATS searches use for the roles this resume targets:
+# ML engineering for LLM inference and performance, on-device and accelerator
+# work, and systems ML. scripts/ats_check.py reads this file.
+#
+#   required:  the build fails if a term is missing from the resume, or if any
+#              text extractor cannot read it.
+#   preferred: reported as coverage in the run summary; never fails the build.
+#
+# A term can carry aliases: `- KV cache: [KV caching]` counts either form.
+# Matching ignores case and needs whole words (C++ and vLLM work as written).
+#
+# Keep this file generic and public. Keywords from a specific posting belong in
+# that application's copy, not here. Missing preferred terms are listed so the
+# report shows the gaps honestly; add one to the resume only when it is true.
+
+required:
+  - Python
+  - C++
+  - PyTorch
+  - LLM: [LLMs]
+  - inference
+  - CUDA
+  - GPU: [GPUs]
+  - NPU: [NPUs]
+  - vLLM
+  - ExecuTorch
+  - quantization
+  - KV cache: [KV caching]
+  - latency
+  - throughput
+  - Hugging Face
+
+preferred:
+  - SGLang
+  - llama.cpp
+  - speculative decoding
+  - GPTQ
+  - LoRA
+  - TRL
+  - DPO
+  - GRPO
+  - torch.compile
+  - ROCm
+  - Trainium
+  - TPU
+  - evals: [evaluation]
+  - benchmark: [benchmarks, benchmarked, benchmarking]
+  - p95
+  - Android
+  - on-device
+  # Gaps worth knowing about; not on the resume today.
+  - Triton
+  - TensorRT
+  - JAX
+  - distributed training: [FSDP, DeepSpeed, Megatron]
+  - kernels: [kernel, CUDA kernels]
+  - profiling: [profiled, profiler]
