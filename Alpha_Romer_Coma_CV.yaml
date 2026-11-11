@@ -25,9 +25,9 @@ cv:
         end_date: present
         highlights:
           - Shipped **OpenWeights** to Google Play; its on-device ExecuTorch LFM2.5 1.2B decodes **2.3× faster** than llama.cpp on Tensor G5.
+          - Merged a fix into **PyTorch ExecuTorch** that stops LFM2 models from carrying state into a new conversation.
           - Shipped **ExecuServe**, an OpenAI-compatible Android LLM server; Qwen3-1.7B's first token took **0.41 s** on NPU vs. 2.0 s on CPU.
           - Built KV cache prefix reuse on Android; Qwen3-1.7B's second turn prefilled in **215 ms** by feeding 20 new tokens, not all 1,212.
-          - Merged a fix into **PyTorch ExecuTorch** that stops LFM2 models from carrying state into a new conversation.
           - Traced lost tool calls in int4 LFM2.5 phone builds to weight rounding; GPTQ lifted search recall **10% to 49%** in held-out evals.
           - Published **236 ExecuTorch builds of 21 LLMs** for phone CPUs, GPUs, and NPUs.
           - Ran 9 LLMs in every CPU/GPU/NPU prefill-decode pairing on Snapdragon 8 Elite Gen 5; NPU prefill was **9.6–15.5×** faster than CPU.
@@ -68,16 +68,16 @@ cv:
         highlights:
           - LoRA fine-tuned Llama 3.1 8B on Trainium1 at **68.3% MFU** (2,952 tok/s) and served the merged model with vLLM on Inferentia2.
           - Benchmarked ORPO preference tuning of the same model on Trainium1 at **30.2% MFU** (1,181 tok/s at 1,024 tokens).
-          - Matched CPU labels on all **10,000 ImageNet images** for compiled CLIP and SigLIP, and caught a CLIP graph returning NaN.
+          - Matched CPU predictions on all **10,000 ImageNet images** for compiled CLIP and SigLIP, and caught a CLIP graph returning NaN.
       - name: "**[MI300X vs. H200 GPU Benchmark](https://github.com/alpharomercoma/MI300X-vs-H200)**"
         date: 2026-07
         highlights:
-          - Measured 164 vLLM serving points; H200 ran 8B training steps **1.32–1.40× faster** despite MI300X's 1.32× FLOPs lead.
+          - Measured 8B training steps **1.32–1.40× faster** on H200 than MI300X despite MI300X's 1.32× FLOPs lead.
           - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and fitting 70B BF16, which one H200 cannot.
       - name: "**[Phone and Laptop AI Chip Benchmarks](https://experimentalmachines.org/research/)**"
         date: 2026-07
         highlights:
-          - Measured Snapdragon 8 Elite's GPU at **479 GFLOP/s** on a 4096³ matmul, about 7× the Dimensity 9500s (67 GFLOP/s).
+          - Measured Snapdragon 8 Elite's GPU at **479 GFLOP/s** on a 4096³ f32 matmul, 6.9× its own CPU.
           - Ran Gemma 3 1B on Apple M5 and Snapdragon X2 Elite; prefill was **2.9×** faster on M5's GPU but 1.9× faster on X2's CPU.
       - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
