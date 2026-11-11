@@ -16,56 +16,69 @@ cv:
   sections:
     # Rendered centered under the contact line, with no heading.
     Summary:
-      - ML engineer building on-device LLM inference, PyTorch LLM training and post-training, and GPU and AI accelerator benchmarks.
-
-    Technical Skills:
-      - label: Training & Post-Training
-        details: PyTorch, Hugging Face Transformers, PEFT/LoRA, TRL, DPO, GRPO, torch.compile
-      - label: Inference & Optimization
-        details: ExecuTorch, llama.cpp, vLLM, ONNX Runtime, MLX, GGUF and GPTQ quantization
-      - label: Accelerators
-        details: CUDA (H100, H200), ROCm (MI300X), AWS Trainium/Inferentia, Google TPU, mobile NPUs
-      - label: Software & Cloud
-        details: Python, Kotlin, TypeScript, SQL, Docker, Kubernetes, Terraform, AWS, Google Cloud
+      - Building and measuring LLM inference and training, from phone NPUs to datacenter GPUs and AI accelerators.
 
     Professional Experience:
       - company: "[Experimental Machines](https://experimentalmachines.org/)"
-        position: Machine Learning Engineer
+        position: Open-Source Machine Learning Engineer
         start_date: 2026-08
         end_date: present
         highlights:
-          - Shipped **OpenWeights** to Google Play; its ExecuTorch LFM2.5 1.2B decodes **2.3× faster** than llama.cpp on Tensor G5.
-          - Published **18 ExecuTorch LLMs (209 builds)** to Hugging Face for phone CPUs, GPUs, and Qualcomm and MediaTek NPUs.
-          - Built **ExecuServe**, an OpenAI- and Anthropic-compatible phone server; Qwen3-1.7B first token took **0.41 s** on NPU, 2.0 s on CPU.
+          - Shipped **OpenWeights** to Google Play; its on-device ExecuTorch LFM2.5 1.2B decodes **2.3× faster** than llama.cpp on Tensor G5.
+          - Shipped **ExecuServe**, an OpenAI-compatible Android LLM server; Qwen3-1.7B's first token took **0.41 s** on NPU vs. 2.0 s on CPU.
+          - Built KV cache prefix reuse on Android; Qwen3-1.7B's second turn prefilled in **215 ms** by feeding 20 new tokens, not all 1,212.
           - Merged a fix into **PyTorch ExecuTorch** that stops LFM2 models from carrying state into a new conversation.
-          - Built KV cache prefix reuse on Android, cutting Qwen3-1.7B second-turn prefill from 5,852 to **215 ms** by reusing 1,192 tokens.
-          - Measured 9 models across 9 CPU/GPU/NPU pairings on a Snapdragon 8 Elite Gen 5; NPU prefill ran **9.6–15.5×** the CPU on all 9.
-          - Secured a **$2,000 compute grant** from Lambda for the team's GPU training and benchmarking work.
+          - Traced lost tool calls in int4 LFM2.5 phone builds to weight rounding; GPTQ lifted search recall **10% to 49%** in held-out evals.
+          - Published **236 ExecuTorch builds of 21 LLMs** for phone CPUs, GPUs, and NPUs.
+          - Ran 9 LLMs in every CPU/GPU/NPU prefill-decode pairing on Snapdragon 8 Elite Gen 5; NPU prefill was **9.6–15.5×** faster than CPU.
+          - Traced decode stalls on throttled phones (23.3 to **0.35 tok/s**) to spinning llama.cpp threads and added a 2-thread fallback in C++.
       - company: "[ViableView](https://www.viableview.com/)"
         position: Senior Data Engineer
         start_date: 2026-02
         end_date: present
         highlights:
-          - Designed an email-enrichment pipeline processing **2.6M records at 240K/day** and achieving **0.94 macro-F1** on validation.
-          - Built ingestion for 2.7M registry records at 200K/day and an autoscaled multi-cloud pipeline validating 800K at 80K/day.
+          - Built a filing-eligibility engine for **25 state registries**, with live-lookup latency of 2.7 s p50 and 9.2 s p95 in 20 states.
+          - Built Delaware, Mississippi and Indiana registry scrapers that collected **4.9M+ business records** and 387,748 filing PDFs.
+          - Built SMTP verification and fleet autoscaling for a team email-discovery pipeline that processed **1.6M+ records**.
       - company: "[Kollab](https://www.kollab.com/)"
         position: Associate Cloud Engineer
         start_date: 2025-09
         end_date: 2026-02
         highlights:
-          - Delivered a patient-search AI system for a Philippine hospital in **30 days** using Google Cloud, Vertex AI, and AlloyDB.
+          - Delivered a patient-search AI system for a hospital in **30 days** using Google Cloud, Vertex AI, and AlloyDB.
+
+    Technical Skills:
+      - label: Languages
+        details: Python, C++
+      - label: Training & Post-Training
+        details: PyTorch, Hugging Face Transformers, PEFT/LoRA, TRL, DPO, GRPO, torch.compile
+      - label: Inference & Optimization
+        details: ExecuTorch, vLLM, SGLang, llama.cpp, GPTQ/GGUF quantization, KV caching, speculative decoding
+      - label: Accelerators
+        details: CUDA GPUs (H100, H200), ROCm (MI300X), AWS Trainium/Inferentia, Google TPU, Qualcomm and MediaTek NPUs
 
     Projects & Research:
+      - name: "**[Multi-Agent LLM Serving on One RTX 4090](https://github.com/alpharomercoma/qwen3.8-27b-rtx4090-vllm)**"
+        date: 2026-09
+        highlights:
+          - Load-tested Qwen3.8-27B in vLLM, SGLang, llama.cpp, and Ollama; vLLM served 8 simulated agents at **4.9 s** median TTFT.
+          - Showed speculative decoding lifting single-user throughput from 52.5 to 82.3 tok/s but slowing 8-agent sessions **2.3×**.
       - name: "**[LLM Fine-Tuning and Serving on AWS Trainium and Inferentia](https://github.com/alpharomercoma/torchneuronx)**"
         date: 2026-08
         highlights:
           - LoRA fine-tuned Llama 3.1 8B on Trainium1 at **68.3% MFU** (2,952 tok/s) and served the merged model with vLLM on Inferentia2.
+          - Benchmarked ORPO preference tuning of the same model on Trainium1 at **30.2% MFU** (1,181 tok/s at 1,024 tokens).
           - Matched CPU labels on all **10,000 ImageNet images** for compiled CLIP and SigLIP, and caught a CLIP graph returning NaN.
       - name: "**[MI300X vs. H200 GPU Benchmark](https://github.com/alpharomercoma/MI300X-vs-H200)**"
         date: 2026-07
         highlights:
           - Measured 164 vLLM serving points; H200 ran 8B training steps **1.32–1.40× faster** despite MI300X's 1.32× FLOPs lead.
-          - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and serving 70B BF16, which H200 cannot.
+          - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and fitting 70B BF16, which one H200 cannot.
+      - name: "**[Phone and Laptop AI Chip Benchmarks](https://experimentalmachines.org/research/)**"
+        date: 2026-07
+        highlights:
+          - Measured Snapdragon 8 Elite's GPU at **479 GFLOP/s** on a 4096³ matmul, about 7× the Dimensity 9500s (67 GFLOP/s).
+          - Ran Gemma 3 1B on Apple M5 and Snapdragon X2 Elite; prefill was **2.9×** faster on M5's GPU but 1.9× faster on X2's CPU.
       - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
         highlights:
@@ -86,16 +99,7 @@ cv:
         start_date: 2024-12
         end_date: present
         highlights:
-          - Selected as a 2026 PyTorch Foundation Ambassador to run events, create content, and mentor PyTorch users in the Philippines.
-          - Trained 4,000+ students and professionals in AI/ML, software engineering, and data engineering across 25+ talks.
-          - Secured $30,000+ in sponsorships from GitHub, Tavily, and Vercel to support technology education across Luzon.
-
-    # Laid out in two columns, filled top to bottom.
-    Certifications:
-      - bullet: "[PyTorch Certified Associate (PTCA)](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/31baf194-fb27-425d-9db8-58ca8a362c5c-alpha-romer-coma-7e12c937-7cfa-49bf-8096-1ce19196b9d1-certificate.pdf)"
-      - bullet: "[Google Cloud Professional Machine Learning Engineer](https://www.credly.com/badges/4199288a-f45e-4584-87d3-a73397d2692c/)"
-      - bullet: "[AWS Certified Machine Learning Engineer – Associate](https://www.credly.com/badges/89a55bb2-8f32-4938-84a1-683f21bb0e64)"
-      - bullet: "[Google Cloud Associate Cloud Engineer](https://www.credly.com/badges/197a51dd-409d-40b1-ba17-2b78bb1c30b1)"
+          - Gave 30+ talks on AI/ML, software engineering, and data engineering to 4,000+ students and professionals.
 
     Education:
       - institution: "[FEU Institute of Technology](https://www.feutech.edu.ph/)"
@@ -103,17 +107,14 @@ cv:
         degree: BS
         start_date: 2022-08
         end_date: 2026-09
-        summary: 4-Year President's Scholar with High Honors; Leadership Award (3 of 921 graduates); CS Academic Varsity
+        summary: President's Scholar with High Honors for all 4 years; Leadership Award (3 of 921 graduates)
 
-    Awards & Recognition:
-      - name: "**[AWS re:Invent 2025 All Builders Welcome Grantee](https://aws.amazon.com/events/reinvent/experiences/all-builders-welcome/)**, **AWS**: sole Filipino among 340 international recipients"
-        date: 2025-12
-      - name: "**[PH100 Honoree](https://stellarph.io/programs/ph100/2025)**, **StellarPH**"
-        date: 2025-09
-      - name: "**[TESDA Academe Expert](https://www.linkedin.com/posts/alpharomercoma_its-an-honor-to-have-been-invited-by-activity-7369037611228688385-hcyV)**: validated two Philippine national AI and data competency qualifications"
-        date: 2025-08
-      - name: "**[National AI Prompt Design Challenge Champion](https://www.linkedin.com/posts/alpharomercoma_we-are-national-ai-prompt-champions-activity-7354141374771838976-KMUw)**, **Straits Interactive**"
-        date: 2025-07
+    # Laid out in two columns, filled top to bottom.
+    Certifications:
+      - bullet: "[PyTorch Certified Associate (PTCA)](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/31baf194-fb27-425d-9db8-58ca8a362c5c-alpha-romer-coma-7e12c937-7cfa-49bf-8096-1ce19196b9d1-certificate.pdf)"
+      - bullet: "[Google Cloud Professional Machine Learning Engineer](https://www.credly.com/badges/4199288a-f45e-4584-87d3-a73397d2692c/)"
+      - bullet: "[AWS Certified Machine Learning Engineer – Associate](https://www.credly.com/badges/89a55bb2-8f32-4938-84a1-683f21bb0e64)"
+      - bullet: "[Google Cloud Associate Cloud Engineer](https://www.credly.com/badges/197a51dd-409d-40b1-ba17-2b78bb1c30b1)"
 
 design:
   theme: alpha
