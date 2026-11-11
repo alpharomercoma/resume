@@ -17,6 +17,17 @@ uv run rendercv render Alpha_Romer_Coma_CV.yaml -w    # live re-render while edi
 page, if any bullet wraps onto a second line, or if the PDF text layer picks up
 icon glyphs or invisible characters. Never commit `rendercv_output/`; CI rebuilds it.
 
+It then runs `scripts/ats_check.py`, which reads the PDF with four text extractors
+(PyMuPDF, pdfminer.six, pypdf, and pdf.js through `scripts/ats/pdfjs_text.mjs`)
+and fails if any of them loses the name, a contact link, a heading, an employer,
+title, date, bullet or skill row, runs words together, or reads a job's dates
+outside that job's entry. It also fails on a missing `required` keyword in
+`ats/keywords.yaml` and reports `preferred` coverage. Results go to
+`rendercv_output/ats_report.md` and, in CI, the run summary. `tests/` proves the
+check still fails on a damaged resume. Run `npm ci` once so pdf.js is included
+locally (CI requires it). Skill rows are checked too, but not for wrapping: look at
+the PNG after changing one.
+
 ## How a change ships
 
 1. Edit `Alpha_Romer_Coma_CV.yaml`.
@@ -60,6 +71,13 @@ or `git log -p Alpha_Romer_Coma_CV.yaml`.
 
 ## How the YAML maps to the layout
 
+- **Section order is decided; don't reorder without asking.** Summary, Professional
+  Experience, Technical Skills, Projects & Research, Speaking & Community, Education,
+  Certifications. Experience leads because recruiters spend
+  their seconds on titles, companies and dates. Skills sits right after it as the
+  keyword checklist. Education stays low on purpose: Alpha does not want it leading
+  for international roles. Greenhouse searches the full resume text, so position
+  does not change ATS matching, only exact wording does.
 - `Summary` is special: it renders centered under the contact line with no heading.
 - `Professional Experience` entries use `company` + `position` and render as
   "**Company**, **Position**".
