@@ -48,7 +48,26 @@ preferred:
   - p95
   - Android
   - on-device
+  # On-device and edge roles (Qualcomm, MediaTek, Arm, Liquid AI, Google, Apple
+  # postings, Nov 2026).
+  - LiteRT: [LiteRT-LM, TFLite]
+  - QNN: [QAIRT]
+  - Hexagon
+  - NeuroPilot
+  - Vulkan
+  - XNNPACK
+  - PTQ: [post-training quantization]
+  - int4
+  - int8
+  - prefill
+  - Kotlin
   # Gaps worth knowing about; not on the resume today.
+  - ONNX Runtime
+  - Core ML: [MLX]
+  - compilers: [MLIR, LLVM, TVM]
+  - mixed precision
+  - pruning
+  - distillation
   - Triton
   - TensorRT
   - JAX
