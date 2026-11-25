@@ -6,6 +6,9 @@
 cv:
   name: Alpha Romer Coma
   headline: On-Device Machine Learning Engineer
+  # Rendered on its own line under the name. Visa status stays off the resume:
+  # application forms ask for it, and their auto-reject rules read the form.
+  location: Manila, Philippines · Open to relocation
   email: alpharomercoma@proton.me
   website: https://alpharomer.com/
   social_networks:
@@ -24,14 +27,14 @@ cv:
         start_date: 2026-08
         end_date: present
         highlights:
-          - Shipped **OpenWeights** to Google Play; its on-device ExecuTorch LFM2.5 1.2B decodes **2.3× faster** than llama.cpp on Tensor G5.
-          - Merged a fix into **PyTorch ExecuTorch** that stops LFM2 models from carrying state into a new conversation.
-          - Shipped **ExecuServe**, an OpenAI-compatible Android LLM server; Qwen3-1.7B's first token took **0.41 s** on NPU vs. 2.0 s on CPU.
-          - Built KV cache prefix reuse on Android; Qwen3-1.7B's second turn prefilled in **215 ms** by feeding 20 new tokens, not all 1,212.
-          - Traced lost tool calls in int4 LFM2.5 phone builds to weight rounding; GPTQ lifted search recall **10% to 49%** in held-out evals.
-          - Published **236 ExecuTorch builds of 21 LLMs** for phone CPUs, GPUs, and NPUs.
-          - Ran 8 LLMs in every CPU/GPU/NPU prefill-decode pairing on Snapdragon 8 Elite Gen 5; NPU prefill beat CPU by **10.5–15.9×**.
-          - Traced decode stalls on throttled phones (23.3 to **0.35 tok/s**) to spinning llama.cpp threads and added a 2-thread fallback in C++.
+          - Shipped **[OpenWeights](https://github.com/ExperimentalMachines/openweights)** to Google Play; its on-device ExecuTorch LFM2.5 1.2B decodes **2.3× faster** than llama.cpp on Tensor G5.
+          - Merged a fix into **[PyTorch ExecuTorch](https://github.com/pytorch/executorch/pull/23401)** that stops LFM2 models from carrying state into a new conversation.
+          - Shipped **[ExecuServe](https://github.com/ExperimentalMachines/execuserve)**, an OpenAI-compatible Android LLM server; Qwen3-1.7B's first token took **0.41 s** on NPU vs. 2.0 s on CPU.
+          - Built [KV cache prefix reuse](https://github.com/ExperimentalMachines/openweights/blob/main/docs/research/executorch.md) on Android; Qwen3-1.7B's second turn prefilled in **215 ms** by feeding 20 new tokens, not all 1,212.
+          - Traced lost tool calls in int4 LFM2.5 builds to weight rounding; GPTQ raised needed searches **10% to 49%** in [held-out evals](https://github.com/ExperimentalMachines/experiments/tree/main/openweights/studies/on-device-evals).
+          - Published **[236 ExecuTorch builds of 21 LLMs](https://huggingface.co/experimentalmachines)** for phone CPUs, GPUs, and NPUs.
+          - Ran 8 LLMs in every CPU/GPU/NPU [prefill-decode pairing](https://experimentalmachines.org/experiments/prefill-decode/) on Snapdragon 8 Elite Gen 5; NPU prefill beat CPU by **10.5–15.9×**.
+          - Traced [throttled-phone decode stalls](https://experimentalmachines.org/experiments/decode-stall/) (23.3 to **0.35 tok/s**) to spinning llama.cpp threads; a 2-thread C++ fallback held 10.7 tok/s.
       - company: "[ViableView](https://www.viableview.com/)"
         position: Senior Data Engineer
         start_date: 2026-02
@@ -57,19 +60,19 @@ cv:
       - label: Datacenter Accelerators
         details: CUDA GPUs (H100, H200), ROCm (MI300X), AWS Trainium/Inferentia, Google TPU
       - label: Tooling
-        details: Android (adb, Perfetto), Qualcomm Device Cloud, Firebase Test Lab, Claude Code, Codex, Git, Linux
+        details: Android (adb, Perfetto), Qualcomm Device Cloud, Firebase Test Lab, Git, Linux
 
     Projects & Research:
       - name: "**[On-Device Android Agent from LFM3-VL-2B](https://github.com/ExperimentalMachines/lfm3-mobile-agent)**"
         date: 2026-11
         highlights:
-          - Fine-tuned LFM3-VL-2B into a screenshot-only phone agent at **15.5%** on held-out AndroidWorld, non-inferior to GUI-Owl-1.5-2B.
+          - Fine-tuned LFM3-VL-2B into a screenshot-only phone agent at **15.5%** on held-out AndroidWorld, on par with GUI-Owl-1.5-2B (13.5%).
           - Deployed it on a phone GPU with LiteRT-LM at **2.5–3.6 s** per call; int8 matched the bf16 model's action on 90.6% of steps.
       - name: "**[4-Bit Weight and 8-Bit KV Cache Quantization on Phones](https://experimentalmachines.org/experiments/kv-cache/)**"
         date: 2026-11
         highlights:
-          - Measured an 8-bit ExecuTorch KV cache making 7.9k-token chats **1.7–3.8×** faster on phone CPUs, with up to 5.3 GB less memory.
-          - Compared AWQ with GPTQ at 4 bits on 3 LLMs; AWQ stayed **25–62%** closer on long text but failed the publish gate on 2 of 3.
+          - 'Measured 8-bit vs. 32-bit ExecuTorch KV cache: **1.7–3.8×** faster 7.9k-token chats on phone CPUs, up to 5.3 GB less memory.'
+          - Compared [AWQ with GPTQ](https://experimentalmachines.org/experiments/rtn-gptq-awq/) on 3 LLMs; AWQ was **25–62%** closer to full precision on long text but failed the publish gate on 2.
       - name: "**[Precision-Aware Compile Caching for Google TorchTPU](https://github.com/google-pytorch/torch_tpu/commit/1d8348cc07b6f29029f25fa95b13a72428324dc9)**"
         date: 2026-11
         highlights:
@@ -84,8 +87,8 @@ cv:
       - name: "**[Phone and Laptop AI Chip Benchmarks](https://experimentalmachines.org/experiments/)**"
         date: 2026-07
         highlights:
-          - Measured Snapdragon 8 Elite's GPU at **479 GFLOP/s** on a 4096³ f32 matmul, 6.9× its own CPU.
-          - Ran Gemma 3 1B on Apple M5 and Snapdragon X2 Elite; prefill was **2.9×** faster on M5's GPU but 1.9× faster on X2's CPU.
+          - Measured Snapdragon 8 Elite's GPU at **479 GFLOP/s** on a 4096×4096 f32 matmul, 6.9× its own CPU.
+          - Ran Gemma 3 1B on Apple M5 and Snapdragon X2 Elite; M5's GPU prefilled **2.9×** faster than X2's, but its CPU was 1.9× slower.
       - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
         highlights:
@@ -119,8 +122,6 @@ cv:
     Certifications:
       - bullet: "[PyTorch Certified Associate (PTCA)](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/31baf194-fb27-425d-9db8-58ca8a362c5c-alpha-romer-coma-7e12c937-7cfa-49bf-8096-1ce19196b9d1-certificate.pdf)"
       - bullet: "[Google Cloud Professional Machine Learning Engineer](https://www.credly.com/badges/4199288a-f45e-4584-87d3-a73397d2692c/)"
-      - bullet: "[AWS Certified Machine Learning Engineer – Associate](https://www.credly.com/badges/89a55bb2-8f32-4938-84a1-683f21bb0e64)"
-      - bullet: "[Google Cloud Associate Cloud Engineer](https://www.credly.com/badges/197a51dd-409d-40b1-ba17-2b78bb1c30b1)"
 
 design:
   theme: alpha
