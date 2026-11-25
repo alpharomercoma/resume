@@ -72,7 +72,7 @@ cv:
         date: 2026-11
         highlights:
           - 'Measured 8-bit vs. 32-bit ExecuTorch KV cache: **1.7–3.8×** faster 7.9k-token chats on phone CPUs, up to 5.3 GB less memory.'
-          - Compared [AWQ with GPTQ](https://experimentalmachines.org/experiments/rtn-gptq-awq/) on 3 LLMs; AWQ was **25–62%** closer to full precision on long text but failed the publish gate on 2.
+          - 'Compared [AWQ with GPTQ](https://experimentalmachines.org/experiments/rtn-gptq-awq/): AWQ was **25–62%** closer to full precision on long text but failed the publish gate on 2 of 3 LLMs.'
       - name: "**[Precision-Aware Compile Caching for Google TorchTPU](https://github.com/google-pytorch/torch_tpu/commit/1d8348cc07b6f29029f25fa95b13a72428324dc9)**"
         date: 2026-11
         highlights:
