@@ -5,7 +5,7 @@
 # See AGENTS.md for the editing rules and the release flow; the look lives in alpha/.
 cv:
   name: Alpha Romer Coma
-  headline: Machine Learning Engineer
+  headline: On-Device Machine Learning Engineer
   email: alpharomercoma@proton.me
   website: https://alpharomer.com/
   social_networks:
@@ -16,7 +16,7 @@ cv:
   sections:
     # Rendered centered under the contact line, with no heading.
     Summary:
-      - Building and measuring LLM inference and training, from phone NPUs to datacenter GPUs and AI accelerators.
+      - Quantizing, compiling and benchmarking LLMs on phone NPUs, GPUs and CPUs, with fixes merged into ExecuTorch and TorchTPU.
 
     Professional Experience:
       - company: "[Experimental Machines](https://experimentalmachines.org/)"
@@ -30,7 +30,7 @@ cv:
           - Built KV cache prefix reuse on Android; Qwen3-1.7B's second turn prefilled in **215 ms** by feeding 20 new tokens, not all 1,212.
           - Traced lost tool calls in int4 LFM2.5 phone builds to weight rounding; GPTQ lifted search recall **10% to 49%** in held-out evals.
           - Published **236 ExecuTorch builds of 21 LLMs** for phone CPUs, GPUs, and NPUs.
-          - Ran 9 LLMs in every CPU/GPU/NPU prefill-decode pairing on Snapdragon 8 Elite Gen 5; NPU prefill was **9.6–15.5×** faster than CPU.
+          - Ran 8 LLMs in every CPU/GPU/NPU prefill-decode pairing on Snapdragon 8 Elite Gen 5; NPU prefill beat CPU by **10.5–15.9×**.
           - Traced decode stalls on throttled phones (23.3 to **0.35 tok/s**) to spinning llama.cpp threads and added a 2-thread fallback in C++.
       - company: "[ViableView](https://www.viableview.com/)"
         position: Senior Data Engineer
@@ -38,8 +38,6 @@ cv:
         end_date: present
         highlights:
           - Built a filing-eligibility engine for **25 state registries**, with live-lookup latency of 2.7 s p50 and 9.2 s p95 in 20 states.
-          - Built Delaware, Mississippi and Indiana registry scrapers that collected **4.9M+ business records** and 387,748 filing PDFs.
-          - Built SMTP verification and fleet autoscaling for a team email-discovery pipeline that processed **1.6M+ records**.
       - company: "[Kollab](https://www.kollab.com/)"
         position: Associate Cloud Engineer
         start_date: 2025-09
@@ -49,32 +47,41 @@ cv:
 
     Technical Skills:
       - label: Languages
-        details: Python, C++
+        details: Python, C++, Kotlin (Android)
       - label: Training & Post-Training
         details: PyTorch, Hugging Face Transformers, PEFT/LoRA, TRL, DPO, GRPO, torch.compile
       - label: Inference & Optimization
-        details: ExecuTorch, vLLM, SGLang, llama.cpp, GPTQ/GGUF quantization, KV caching, speculative decoding
-      - label: Accelerators
-        details: CUDA GPUs (H100, H200), ROCm (MI300X), AWS Trainium/Inferentia, Google TPU, Qualcomm and MediaTek NPUs
+        details: ExecuTorch, LiteRT-LM, llama.cpp/GGUF, int4/int8 PTQ (GPTQ, AWQ), KV caching, speculative decoding
+      - label: On-Device Hardware
+        details: Qualcomm Hexagon and MediaTek NPUs (QNN, NeuroPilot), Adreno/Mali GPUs (Vulkan), Arm CPUs (XNNPACK)
+      - label: Datacenter Accelerators
+        details: CUDA GPUs (H100, H200), ROCm (MI300X), AWS Trainium/Inferentia, Google TPU
+      - label: Tooling
+        details: Android (adb, Perfetto), Qualcomm Device Cloud, Firebase Test Lab, Claude Code, Codex, Git, Linux
 
     Projects & Research:
-      - name: "**[Multi-Agent LLM Serving on One RTX 4090](https://github.com/alpharomercoma/qwen3.8-27b-rtx4090-vllm)**"
-        date: 2026-09
+      - name: "**[On-Device Android Agent from LFM3-VL-2B](https://github.com/ExperimentalMachines/lfm3-mobile-agent)**"
+        date: 2026-11
         highlights:
-          - Load-tested Qwen3.8-27B in vLLM, SGLang, llama.cpp, and Ollama; vLLM served 8 simulated agents at **4.9 s** median TTFT.
-          - Showed speculative decoding lifting single-user throughput from 52.5 to 82.3 tok/s but slowing 8-agent sessions **2.3×**.
+          - Fine-tuned LFM3-VL-2B into a screenshot-only phone agent at **15.5%** on held-out AndroidWorld, non-inferior to GUI-Owl-1.5-2B.
+          - Deployed it on a phone GPU with LiteRT-LM at **2.5–3.6 s** per call; int8 matched the bf16 model's action on 90.6% of steps.
+      - name: "**[4-Bit Weight and 8-Bit KV Cache Quantization on Phones](https://experimentalmachines.org/experiments/kv-cache/)**"
+        date: 2026-11
+        highlights:
+          - Measured an 8-bit ExecuTorch KV cache making 7.9k-token chats **1.7–3.8×** faster on phone CPUs, with up to 5.3 GB less memory.
+          - Compared AWQ with GPTQ at 4 bits on 3 LLMs; AWQ stayed **25–62%** closer on long text but failed the publish gate on 2 of 3.
+      - name: "**[Precision-Aware Compile Caching for Google TorchTPU](https://github.com/google-pytorch/torch_tpu/commit/1d8348cc07b6f29029f25fa95b13a72428324dc9)**"
+        date: 2026-11
+        highlights:
+          - Found torch.compile on TPU silently reusing programs compiled at another matmul precision, from disk and in-memory caches.
+          - Keyed the AOTAutograd cache and Dynamo guards on TPU precision, re-enabling Google's skipped test; merged upstream.
       - name: "**[LLM Fine-Tuning and Serving on AWS Trainium and Inferentia](https://github.com/alpharomercoma/torchneuronx)**"
         date: 2026-08
         highlights:
           - LoRA fine-tuned Llama 3.1 8B on Trainium1 at **68.3% MFU** (2,952 tok/s) and served the merged model with vLLM on Inferentia2.
-          - Benchmarked ORPO preference tuning of the same model on Trainium1 at **30.2% MFU** (1,181 tok/s at 1,024 tokens).
+          - Benchmarked ORPO preference tuning of the same model on Trainium1 at **30.2% MFU** and 1,181 tok/s throughput at 1,024 tokens.
           - Matched CPU predictions on all **10,000 ImageNet images** for compiled CLIP and SigLIP, and caught a CLIP graph returning NaN.
-      - name: "**[MI300X vs. H200 GPU Benchmark](https://github.com/alpharomercoma/MI300X-vs-H200)**"
-        date: 2026-07
-        highlights:
-          - Measured 8B training steps **1.32–1.40× faster** on H200 than MI300X despite MI300X's 1.32× FLOPs lead.
-          - Showed MI300X winning 70B FP8 serving at 128–256 concurrency by up to **1.14×** and fitting 70B BF16, which one H200 cannot.
-      - name: "**[Phone and Laptop AI Chip Benchmarks](https://experimentalmachines.org/research/)**"
+      - name: "**[Phone and Laptop AI Chip Benchmarks](https://experimentalmachines.org/experiments/)**"
         date: 2026-07
         highlights:
           - Measured Snapdragon 8 Elite's GPU at **479 GFLOP/s** on a 4096³ f32 matmul, 6.9× its own CPU.
@@ -82,8 +89,7 @@ cv:
       - name: "**[Visual-Qwen: Multimodal Short-Form Video Classification](https://micromarc.vercel.app/thesis)**"
         date: 2025-12
         highlights:
-          - Led a tri-modal EVA-CLIP/Whisper/Qwen3-4B VLM build detecting “sludge” videos at **97.19% F1** on 300 held-out videos.
-          - Published the model, code, and a **2,000-video multimodal dataset** spanning TikTok and YouTube Shorts.
+          - Led a tri-modal EVA-CLIP/Whisper/Qwen3-4B VLM detecting “sludge” videos at **97.19% F1**, released with a 2,000-video dataset.
 
     # Titles are written as "**[Title](link)**, **Organization**" so an entry can
     # omit the organization.
