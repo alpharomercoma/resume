@@ -72,7 +72,7 @@
   })
 }
 
-#let header(name, headline, contacts) = {
+#let header(name, headline, location, contacts) = {
   set text(fill: muted)
   heading(level: 1, {
     text(size: 14pt, weight: "bold", name)
@@ -82,6 +82,11 @@
   })
   v(6.3pt)
   set text(fill: ink)
+  // Where the owner lives and whether they'll move, on its own line under the name.
+  if location != none {
+    align(center, location)
+    v(3pt)
+  }
   // FlowCV sets the separators 0.75pt below the baseline; so do we.
   align(center, contacts.join([ #h(4pt)#text(baseline: 0.75pt)[|]#h(4pt) ]))
 }

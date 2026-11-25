@@ -8,6 +8,7 @@ Run after ./scripts/render.sh (it needs rendercv_output/Alpha_Romer_Coma_CV.pdf)
     uv run --frozen pytest -q tests
 """
 
+import re
 import sys
 from pathlib import Path
 
@@ -38,6 +39,18 @@ def raw():
     return pymupdf.open(PDF)[0].get_text()
 
 
+def replace_loose(raw, phrase, new):
+    """Replace phrase once in raw, letting any whitespace stand between its words.
+
+    An inline link's external-link mark can break the line mid-bullet
+    ("OpenWeights\\n to"), so the bullet's exact text never appears in the PDF.
+    """
+    pattern = r"\s+".join(re.escape(w) for w in phrase.split())
+    damaged, n = re.subn(pattern, lambda _: new, raw, count=1)
+    assert n == 1, f"phrase not found in the rendered text: {phrase!r}"
+    return damaged
+
+
 def failures(text, exp):
     report = ats_check.Report()
     ats_check.check_extractor("test", text, exp, report)
@@ -50,14 +63,14 @@ def test_rendered_resume_passes(raw, exp):
 
 def test_lost_bullet_fails(raw, exp):
     bullet = exp["entries"][0].bullets[0]
-    assert any("lost" in f for f in failures(raw.replace(bullet[:40], "", 1), exp))
+    assert any("lost" in f for f in failures(replace_loose(raw, bullet[:40], ""), exp))
 
 
 def test_words_run_together_fail(raw, exp):
     bullet = exp["entries"][0].bullets[0]
     words = bullet.split()
     glued = bullet.replace(f"{words[1]} {words[2]}", f"{words[1]}{words[2]}", 1)
-    assert any("run together" in f for f in failures(raw.replace(bullet, glued, 1), exp))
+    assert any("run together" in f for f in failures(replace_loose(raw, bullet, glued), exp))
 
 
 def test_job_date_read_in_the_next_section_fails(raw, exp):

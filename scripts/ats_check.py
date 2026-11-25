@@ -164,6 +164,7 @@ def expected(cv: dict) -> dict:
         link_uris.add(f"https://github.com/{networks['github']}")
     return {
         "name": cv["name"],
+        "location": cv.get("location"),
         "email": cv["email"],
         "links_text": links_text,
         "link_uris": link_uris,
@@ -210,6 +211,8 @@ def check_extractor(name: str, raw: str, exp: dict, report: Report) -> int:
     """Check one extractor's text; return how many expected items it read intact."""
     text, flat = norm(raw), squash(raw)
     phrases: list[tuple[str, str]] = [("name", exp["name"]), ("email", exp["email"])]
+    if exp.get("location"):
+        phrases.append(("location", exp["location"]))
     phrases += [("link", t) for t in exp["links_text"]]
     phrases += [("summary", s) for s in exp["summary"]]
     phrases += [("heading", h) for h in exp["headings"]]

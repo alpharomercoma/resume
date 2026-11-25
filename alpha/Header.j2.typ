@@ -1,6 +1,11 @@
 #header(
   "{{ cv._plain_name|replace("\\", "\\\\")|replace("\"", "\\\"") }}",
   [{{ cv.headline }}],
+{% if cv.location %}
+  [{{ cv.location }}],
+{% else %}
+  none,
+{% endif %}
   (
 {% if cv.email %}
     link("mailto:{{ cv.email }}")[{{ cv.email|replace("@", "\\@") }}],

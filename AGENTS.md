@@ -78,6 +78,12 @@ or `git log -p Alpha_Romer_Coma_CV.yaml`.
   keyword checklist. Education stays low on purpose: Alpha does not want it leading
   for international roles. Greenhouse searches the full resume text, so position
   does not change ATS matching, only exact wording does.
+- `location` renders as its own centered line between the name and the contact
+  line: "City, Country · Open to relocation". Never add visa or sponsorship status:
+  application forms ask for it, and Greenhouse and Ashby auto-reject on the form
+  answer, so on the resume it only puts a negative first in a recruiter's skim. Keep
+  the header to email, personal site, LinkedIn and GitHub; link other sites (e.g.
+  experimentalmachines.org) from the entries they back.
 - `Summary` is special: it renders centered under the contact line with no heading.
 - `Professional Experience` entries use `company` + `position` and render as
   "**Company**, **Position**".
